@@ -7,17 +7,25 @@
     tools:context=".MainActivity">
 
 
-    <!--
+
     <ListView
         android:id="@+id/songListView"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:divider="@android:color/transparent"
         android:dividerHeight="10sp"
-        android:padding="8dp" />-->
+        android:padding="8dp" />
+    <!--
     <com.google.android.exoplayer2.ui.PlayerView
         android:id="@+id/playerView"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"/>
+        android:layout_height="match_parent"/>-->
+
+    <!--
+    <Button
+        android:layout_width="300dp"
+        android:layout_height="300dp"
+        android:text="KLIKNIJ"
+        android:id="@+id/kliknij" /> -->
 
 </RelativeLayout>
