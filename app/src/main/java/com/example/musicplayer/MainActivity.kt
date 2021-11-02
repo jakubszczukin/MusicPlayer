@@ -11,6 +11,8 @@ import android.provider.Settings
 import android.util.Log
 import android.widget.*
 import androidx.appcompat.app.AlertDialog
+import androidx.navigation.findNavController
+import androidx.navigation.ui.setupWithNavController
 import com.google.android.exoplayer2.MediaItem
 import com.google.android.exoplayer2.SimpleExoPlayer
 import com.google.android.exoplayer2.source.MediaSource
@@ -19,6 +21,7 @@ import com.google.android.exoplayer2.ui.PlayerView
 import com.google.android.exoplayer2.upstream.DefaultHttpDataSource
 import com.google.android.exoplayer2.upstream.DefaultHttpDataSourceFactory
 import com.google.android.exoplayer2.util.Util
+import com.google.android.material.bottomnavigation.BottomNavigationView
 import com.karumi.dexter.Dexter
 import com.karumi.dexter.MultiplePermissionsReport
 import com.karumi.dexter.PermissionToken
@@ -39,14 +42,19 @@ class MainActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
 
-        listView = findViewById(R.id.songListView)
+        //listView = findViewById(R.id.songListView)
 
         musicFinder = MusicFinder(contentResolver)
         musicFinder.prepare()
 
         val songs = musicFinder.allSongs
 
-        permissionHandler(this, songs)
+        //permissionHandler(this, songs)
+
+        // Initialize the bottom nav view and create object
+        val bottomNavView =findViewById<BottomNavigationView>(R.id.bottom_navigation_view)
+        val navController = findNavController(R.id.nav_fragment)
+        bottomNavView.setupWithNavController(navController)
     }
 
     private fun permissionHandler(context : Context, songs : List<MusicFinder.Song>){
@@ -56,7 +64,6 @@ class MainActivity : AppCompatActivity() {
             .withListener(object : PermissionListener {
                 override fun onPermissionGranted(response: PermissionGrantedResponse) {
                     Toast.makeText(context, "All permissions are granted", Toast.LENGTH_LONG).show()
-                    displaySongs(songs)
                 }
 
                 override fun onPermissionDenied(response: PermissionDeniedResponse) {
@@ -88,27 +95,6 @@ class MainActivity : AppCompatActivity() {
         //}
 
         builder.show()
-    }
-
-    private fun displaySongs(songs : List<MusicFinder.Song>){
-        val songTitles = mutableListOf<String>()
-        if(songs.isEmpty()) Log.d("TEST", "PUSTO")
-        for(song in songs){
-            Log.d("TEST", song.title)
-            Log.d("TEST", song.artist)
-            Log.d("TEST", song.uri.toString())
-            songTitles.add(song.title)
-        }
-
-        val songsAdapter = SongsAdapter(this, songTitles)
-        listView.adapter = songsAdapter
-        listView.onItemClickListener = AdapterView.OnItemClickListener{
-                _, _, position, _ ->
-            val intent = Intent(this, PlayerActivity::class.java)
-            Log.d("URITEST", songs.elementAt(position).uri.toString())
-            intent.putExtra(PLAYER_INTENT_MEDIA_ID, songs.elementAt(position).uri.toString())
-            startActivity(intent)
-        }
     }
 
 /*
