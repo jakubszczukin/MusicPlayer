@@ -34,8 +34,6 @@ class PlayerActivity : AppCompatActivity() {
 
         songUri = Uri.parse(intent.getStringExtra(PLAYER_INTENT_MEDIA_ID))
 
-        Log.d("TEST", songUri.toString())
-
     }
 
     private fun initPlayer() {

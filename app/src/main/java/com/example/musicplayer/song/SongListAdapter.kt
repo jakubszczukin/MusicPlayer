@@ -16,30 +16,32 @@ import com.example.musicplayer.R
 import com.squareup.picasso.Picasso
 import java.util.*
 import android.widget.Toast
+import com.example.musicplayer.interfaces.OnItemClickListener
 
-class SongListAdapter(private val context: Context) : RecyclerView.Adapter<SongListAdapter.ViewHolder>() {
+class SongListAdapter(private val context: Context, private val clickListener: OnItemClickListener) : RecyclerView.Adapter<SongListAdapter.ViewHolder>() {
 
     private var songList: List<Song>? = null
 
-    class ViewHolder(view: View) : RecyclerView.ViewHolder(view){
+    class ViewHolder(view: View, context: Context) : RecyclerView.ViewHolder(view){
         val songTitle: TextView = view.findViewById(R.id.songTitle)
-        val songAlbum: TextView = view.findViewById(R.id.songAlbum)
+        val songArtist: TextView = view.findViewById(R.id.songArtist)
         val songImage: ImageView = view.findViewById(R.id.songImage)
 
         fun bind(song: Song){
             songTitle.text = song.title
-            songAlbum.text = song.album
+            songArtist.text = song.artist
 
             Picasso.get()
                 .load(song.artUri)
                 .placeholder(R.drawable.ic_baseline_music_video_24)
                 .error(R.drawable.ic_baseline_music_video_24)
                 .into(songImage)
+
         }
 
         // Define click listener for the ViewHolder's View
         init{
-
+            Toast.makeText(context, "TEST", Toast.LENGTH_LONG).show()
         }
     }
 
@@ -48,7 +50,7 @@ class SongListAdapter(private val context: Context) : RecyclerView.Adapter<SongL
         // Create a new view, which defines the UI of the list item
         val view = LayoutInflater.from(parent.context).inflate(R.layout.songs_list_item, parent, false)
 
-        return ViewHolder(view)
+        return ViewHolder(view, context)
     }
 
 
@@ -61,7 +63,12 @@ class SongListAdapter(private val context: Context) : RecyclerView.Adapter<SongL
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
        songList?.get(position)?.let{ song ->
            holder.bind(song)
+
            val contentUri = ContentUris.withAppendedId(MediaStore.Audio.Media.EXTERNAL_CONTENT_URI, song.id)
+
+           holder.itemView.setOnClickListener{
+               clickListener.onItemClick(contentUri)
+           }
        }
     }
 

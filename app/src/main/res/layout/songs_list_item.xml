@@ -14,13 +14,16 @@
 
         <ImageView
             android:id="@+id/songImage"
-            android:layout_width="50dp"
-            android:layout_height="50dp"
+            android:layout_width="70dp"
+            android:layout_height="69dp"
             android:layout_alignParentStart="true"
             android:layout_alignParentTop="true"
-            android:layout_marginStart="5dp"
-            android:layout_marginTop="10dp"
-            android:background="@drawable/song_list_background" />
+            android:layout_marginStart="2dp"
+            android:layout_marginTop="2dp"
+            android:layout_marginEnd="2dp"
+            android:layout_marginBottom="2dp"
+            android:background="@drawable/song_list_background"
+            android:contentDescription="Album image" />
 
         <TextView
             android:id="@+id/songTitle"
@@ -38,7 +41,7 @@
             android:textSize="20sp" />
 
         <TextView
-            android:id="@+id/songAlbum"
+            android:id="@+id/songArtist"
             android:layout_width="281dp"
             android:layout_height="wrap_content"
             android:layout_below="@+id/songTitle"
@@ -51,7 +54,7 @@
             android:marqueeRepeatLimit="marquee_forever"
             android:padding="5dp"
             android:scrollHorizontally="true"
-            android:text="Song album"
+            android:text="Song artist"
             android:textSize="14sp" />
 
     </RelativeLayout>
