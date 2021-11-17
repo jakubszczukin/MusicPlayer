@@ -1,33 +1,34 @@
 package com.example.musicplayer.album
 
+import android.content.Intent
+import android.net.Uri
 import android.os.Bundle
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.AdapterView
+import android.widget.TextView
+import android.widget.Toast
+import androidx.lifecycle.Observer
+import androidx.recyclerview.widget.LinearLayoutManager
+import androidx.recyclerview.widget.RecyclerView
+import com.example.musicplayer.MainActivity
+import com.example.musicplayer.PLAYER_INTENT_MEDIA_ID
+import com.example.musicplayer.PlayerActivity
 import com.example.musicplayer.R
+import com.example.musicplayer.interfaces.OnItemClickListener
+import com.example.musicplayer.song.SongListAdapter
 
-// TODO: Rename parameter arguments, choose names that match
-// the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
-private const val ARG_PARAM1 = "param1"
-private const val ARG_PARAM2 = "param2"
+class AlbumListFragment : Fragment(), OnItemClickListener {
 
-/**
- * A simple [Fragment] subclass.
- * Use the [AlbumListFragment.newInstance] factory method to
- * create an instance of this fragment.
- */
-class AlbumListFragment : Fragment() {
-    // TODO: Rename and change types of parameters
-    private var param1: String? = null
-    private var param2: String? = null
+    private lateinit var albumsRecyclerView: RecyclerView
+    private lateinit var albumListAdapter: AlbumListAdapter
+    private lateinit var albumErrorTextView: TextView
+    private var isAlbumListEmpty = false
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        arguments?.let {
-            param1 = it.getString(ARG_PARAM1)
-            param2 = it.getString(ARG_PARAM2)
-        }
     }
 
     override fun onCreateView(
@@ -38,23 +39,34 @@ class AlbumListFragment : Fragment() {
         return inflater.inflate(R.layout.fragment_album_list, container, false)
     }
 
-    companion object {
-        /**
-         * Use this factory method to create a new instance of
-         * this fragment using the provided parameters.
-         *
-         * @param param1 Parameter 1.
-         * @param param2 Parameter 2.
-         * @return A new instance of fragment AlbumListFragment.
-         */
-        // TODO: Rename and change types and number of parameters
-        @JvmStatic
-        fun newInstance(param1: String, param2: String) =
-            AlbumListFragment().apply {
-                arguments = Bundle().apply {
-                    putString(ARG_PARAM1, param1)
-                    putString(ARG_PARAM2, param2)
-                }
-            }
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
+
+        loadAlbums()
+        albumsRecyclerView = view.findViewById(R.id.albumsRecyclerView)
+        albumListAdapter = AlbumListAdapter(requireActivity().applicationContext, this)
+        albumsRecyclerView.layoutManager = LinearLayoutManager(view.context)
+
+        albumsRecyclerView.adapter = albumListAdapter
     }
+
+    private fun loadAlbums(){
+        AlbumObserver.getInstance(requireContext()).findAlbums()
+            .observe(viewLifecycleOwner, Observer { albums ->
+                if(albums == null)
+                    isAlbumListEmpty = true
+                else{
+                    isAlbumListEmpty = false
+                    albumListAdapter.setData(albums)
+                }
+            })
+    }
+
+    override fun onItemClick(contentUri: Uri){
+        Toast.makeText(context, "Album clicked -> TODO", Toast.LENGTH_SHORT).show()
+        //val intent = Intent(activity?.baseContext, PlayerActivity::class.java)
+        //intent.putExtra(PLAYER_INTENT_MEDIA_ID, contentUri.toString())
+        //startActivity(intent)
+    }
+
 }

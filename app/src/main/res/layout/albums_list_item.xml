@@ -13,7 +13,7 @@
         android:padding="3dp">
 
         <ImageView
-            android:id="@+id/songImage"
+            android:id="@+id/albumImage"
             android:layout_width="69dp"
             android:layout_height="69dp"
             android:layout_alignParentStart="true"
@@ -26,35 +26,35 @@
             android:contentDescription="Album image" />
 
         <TextView
-            android:id="@+id/songTitle"
+            android:id="@+id/albumTitle"
             android:layout_width="310dp"
             android:layout_height="wrap_content"
             android:layout_alignParentEnd="true"
             android:layout_marginStart="5dp"
             android:layout_marginEnd="12dp"
-            android:layout_toEndOf="@+id/songImage"
+            android:layout_toEndOf="@+id/albumImage"
             android:ellipsize="marquee"
             android:marqueeRepeatLimit="marquee_forever"
             android:padding="5dp"
             android:scrollHorizontally="true"
-            android:text="Song Name"
+            android:text="Album Name"
             android:textSize="20sp" />
 
         <TextView
-            android:id="@+id/songArtist"
+            android:id="@+id/albumArtist"
             android:layout_width="281dp"
             android:layout_height="wrap_content"
-            android:layout_below="@+id/songTitle"
+            android:layout_below="@+id/albumTitle"
             android:layout_alignParentEnd="true"
             android:layout_marginStart="24dp"
             android:layout_marginTop="5dp"
             android:layout_marginEnd="12dp"
-            android:layout_toEndOf="@+id/songImage"
+            android:layout_toEndOf="@+id/albumImage"
             android:ellipsize="marquee"
             android:marqueeRepeatLimit="marquee_forever"
             android:padding="5dp"
             android:scrollHorizontally="true"
-            android:text="Song artist"
+            android:text="Album artist"
             android:textSize="14sp" />
 
     </RelativeLayout>

@@ -53,9 +53,6 @@ dependencies {
     // Dexter (handling live permissions)
     implementation 'com.karumi:dexter:6.2.3'
 
-    //MPlayLib (Access all the music files on Android device)
-    implementation 'com.mtechviral.mplaylib:mplaylib:1.0.0'
-
     // Picasso (image loading)
     implementation 'com.squareup.picasso:picasso:2.8'
 }

@@ -30,26 +30,16 @@ import com.karumi.dexter.listener.PermissionGrantedResponse
 import com.karumi.dexter.listener.PermissionRequest
 import com.karumi.dexter.listener.single.DialogOnDeniedPermissionListener
 import com.karumi.dexter.listener.single.PermissionListener
-import com.mtechviral.mplaylib.MusicFinder
 
 class MainActivity : AppCompatActivity() {
 
-    private lateinit var listView: ListView
-
-    private lateinit var musicFinder: MusicFinder
+    var permissionsGranted = false
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
 
-        //listView = findViewById(R.id.songListView)
-
-        musicFinder = MusicFinder(contentResolver)
-        musicFinder.prepare()
-
-        val songs = musicFinder.allSongs
-
-        //permissionHandler(this, songs)
+        permissionHandler(this)
 
         // Initialize the bottom nav view and create object
         val bottomNavView =findViewById<BottomNavigationView>(R.id.bottom_navigation_view)
@@ -57,21 +47,25 @@ class MainActivity : AppCompatActivity() {
         bottomNavView.setupWithNavController(navController)
     }
 
-    private fun permissionHandler(context : Context, songs : List<MusicFinder.Song>){
+    private fun permissionHandler(context : Context){
 
         Dexter.withContext(context)
             .withPermission(Manifest.permission.READ_EXTERNAL_STORAGE)
             .withListener(object : PermissionListener {
+                // Permissions Granted
                 override fun onPermissionGranted(response: PermissionGrantedResponse) {
-                    Toast.makeText(context, "All permissions are granted", Toast.LENGTH_LONG).show()
                 }
 
+                // Permissions Denied
                 override fun onPermissionDenied(response: PermissionDeniedResponse) {
+                    Toast.makeText(context, "Permissions denied!", Toast.LENGTH_SHORT).show()
                     showSettingsDialog(context)
                 }
 
+                // What to do if user rejected permissions before
                 override fun onPermissionRationaleShouldBeShown(permission: PermissionRequest, token: PermissionToken) {
                     token.continuePermissionRequest()
+                    showSettingsDialog(context)
                 }
             }).onSameThread().check()
     }

@@ -11,9 +11,9 @@ import com.example.musicplayer.song.SongObserver.Companion.instance
 
 class SongObserver constructor(private val context: Context) {
 
-    val uri = MediaStore.Audio.Media.IS_MUSIC + " != 0"
+    private val uri = MediaStore.Audio.Media.IS_MUSIC + " != 0"
 
-    val projection = arrayOf(
+    private val projection = arrayOf(
         MediaStore.Audio.Media._ID,
         MediaStore.Audio.Media.TITLE,
         MediaStore.Audio.Media.ARTIST,

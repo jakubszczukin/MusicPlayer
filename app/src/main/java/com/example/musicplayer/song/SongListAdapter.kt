@@ -1,5 +1,6 @@
 package com.example.musicplayer.song
 
+import android.annotation.SuppressLint
 import android.app.PendingIntent.getActivity
 import android.content.ContentUris
 import android.content.Context
@@ -33,15 +34,11 @@ class SongListAdapter(private val context: Context, private val clickListener: O
 
             Picasso.get()
                 .load(song.artUri)
+                .resize(96, 96)
+                .centerCrop()
                 .placeholder(R.drawable.ic_baseline_music_video_24)
                 .error(R.drawable.ic_baseline_music_video_24)
                 .into(songImage)
-
-        }
-
-        // Define click listener for the ViewHolder's View
-        init{
-            Toast.makeText(context, "TEST", Toast.LENGTH_LONG).show()
         }
     }
 
@@ -54,6 +51,7 @@ class SongListAdapter(private val context: Context, private val clickListener: O
     }
 
 
+    @SuppressLint("NotifyDataSetChanged")
     fun setData(songs: List<Song>){
         songList = songs
         notifyDataSetChanged()

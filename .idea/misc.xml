@@ -8,12 +8,13 @@
         <entry key="..\:/Users/karet/AndroidStudioProjects/MusicPlayer/app/src/main/res/drawable/ic_launcher_background.xml" value="0.2635416666666667" />
         <entry key="..\:/Users/karet/AndroidStudioProjects/MusicPlayer/app/src/main/res/drawable/song_list_background.xml" value="0.2635416666666667" />
         <entry key="..\:/Users/karet/AndroidStudioProjects/MusicPlayer/app/src/main/res/layout/activity_main.xml" value="0.24739583333333334" />
-        <entry key="..\:/Users/karet/AndroidStudioProjects/MusicPlayer/app/src/main/res/layout/fragment_album_list.xml" value="0.24739583333333334" />
+        <entry key="..\:/Users/karet/AndroidStudioProjects/MusicPlayer/app/src/main/res/layout/albums_list_item.xml" value="0.1522289766970618" />
+        <entry key="..\:/Users/karet/AndroidStudioProjects/MusicPlayer/app/src/main/res/layout/fragment_album_list.xml" value="0.25" />
         <entry key="..\:/Users/karet/AndroidStudioProjects/MusicPlayer/app/src/main/res/layout/fragment_playlist.xml" value="0.24739583333333334" />
         <entry key="..\:/Users/karet/AndroidStudioProjects/MusicPlayer/app/src/main/res/layout/fragment_radio_list.xml" value="0.24739583333333334" />
-        <entry key="..\:/Users/karet/AndroidStudioProjects/MusicPlayer/app/src/main/res/layout/fragment_song_list.xml" value="0.24739583333333334" />
+        <entry key="..\:/Users/karet/AndroidStudioProjects/MusicPlayer/app/src/main/res/layout/fragment_song_list.xml" value="0.1" />
         <entry key="..\:/Users/karet/AndroidStudioProjects/MusicPlayer/app/src/main/res/layout/list_item.xml" value="0.33" />
-        <entry key="..\:/Users/karet/AndroidStudioProjects/MusicPlayer/app/src/main/res/layout/songs_list_item.xml" value="0.42916666666666664" />
+        <entry key="..\:/Users/karet/AndroidStudioProjects/MusicPlayer/app/src/main/res/layout/songs_list_item.xml" value="0.1" />
         <entry key="..\:/Users/karet/AndroidStudioProjects/MusicPlayer/app/src/main/res/menu/bottom_nav_menu.xml" value="0.24739583333333334" />
       </map>
     </option>

@@ -1,18 +1,28 @@
 <?xml version="1.0" encoding="utf-8"?>
-<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     tools:context=".album.AlbumListFragment">
 
-    <!-- TODO: Update blank fragment layout -->
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/albumsRecyclerView"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"/>
+
+
     <TextView
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:text="Album list Fragment"
+        android:id="@+id/albumErrorTextView"
+        android:text="No albums found"
         android:textSize="20sp"
         android:textStyle="bold"
         android:textColor="@color/purple_500"
-        android:gravity="center"/>
+        android:gravity="center"
+        android:visibility="gone"/>
 
-</FrameLayout>
+
+</androidx.constraintlayout.widget.ConstraintLayout>
