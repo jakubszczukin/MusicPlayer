@@ -33,13 +33,10 @@ import com.karumi.dexter.listener.single.PermissionListener
 
 class MainActivity : AppCompatActivity() {
 
-    var permissionsGranted = false
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
-
-        permissionHandler(this)
 
         // Initialize the bottom nav view and create object
         val bottomNavView =findViewById<BottomNavigationView>(R.id.bottom_navigation_view)
@@ -47,49 +44,8 @@ class MainActivity : AppCompatActivity() {
         bottomNavView.setupWithNavController(navController)
     }
 
-    private fun permissionHandler(context : Context){
 
-        Dexter.withContext(context)
-            .withPermission(Manifest.permission.READ_EXTERNAL_STORAGE)
-            .withListener(object : PermissionListener {
-                // Permissions Granted
-                override fun onPermissionGranted(response: PermissionGrantedResponse) {
-                }
 
-                // Permissions Denied
-                override fun onPermissionDenied(response: PermissionDeniedResponse) {
-                    Toast.makeText(context, "Permissions denied!", Toast.LENGTH_SHORT).show()
-                    showSettingsDialog(context)
-                }
-
-                // What to do if user rejected permissions before
-                override fun onPermissionRationaleShouldBeShown(permission: PermissionRequest, token: PermissionToken) {
-                    token.continuePermissionRequest()
-                    showSettingsDialog(context)
-                }
-            }).onSameThread().check()
-    }
-
-    private fun showSettingsDialog(context : Context){
-        val builder = AlertDialog.Builder(context)
-
-        builder.setTitle("Need Permissions")
-
-        builder.setMessage("This app needs permission to use this feature. You can grant them in app settings.")
-        builder.setPositiveButton("GOTO SETTINGS") { dialog, _ ->
-            dialog!!.cancel()
-            val intent = Intent(Settings.ACTION_APPLICATION_DETAILS_SETTINGS)
-            val uri = Uri.fromParts("package", packageName, null)
-            intent.data = uri
-            @Suppress("DEPRECATION")
-            startActivityForResult(intent, 101)
-        }
-        //builder.setNegativeButton("Cancel"){ dialog, _ ->
-        //    dialog!!.cancel()
-        //}
-
-        builder.show()
-    }
 
 /*
    */

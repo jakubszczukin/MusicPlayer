@@ -15,5 +15,12 @@
         android:textColor="@color/purple_500"
         android:gravity="center"/>
 
+    <Button
+        android:layout_width="300dp"
+        android:layout_height="300dp"
+        android:id="@+id/radioButton"
+        android:text="Wlacz radio"
+        />
+
 
 </FrameLayout>
