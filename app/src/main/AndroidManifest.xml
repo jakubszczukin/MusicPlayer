@@ -7,21 +7,25 @@
     <uses-permission android:name="android.permission.INTERNET" />
 
     <application
+        android:name=".radio.RadioApplication"
         android:allowBackup="true"
         android:icon="@mipmap/ic_launcher"
         android:label="@string/app_name"
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
-        android:usesCleartextTraffic="true"
-        android:theme="@style/Theme.MusicPlayer">
+        android:theme="@style/Theme.MusicPlayer"
+        android:usesCleartextTraffic="true">
+        <activity
+            android:name=".TestRadioActivity"
+            android:exported="false" />
         <activity
             android:name=".PlayerActivity"
             android:exported="false" />
         <activity
             android:name=".MainActivity"
+            android:configChanges="orientation|screenSize|layoutDirection"
             android:exported="true"
             tools:ignore="ExtraText">
-            android:configChanges="orientation|screenSize|layoutDirection"
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
