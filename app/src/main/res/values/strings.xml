@@ -2,4 +2,11 @@
     <string name="app_name">MusicPlayer</string>
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="songs">Songs</string>
+    <string name="playlists">Playlists</string>
+    <string name="albums">Albums</string>
+    <string name="radio">Radio</string>
+    <string name="add_radio_station">Add radio station</string>
+    <string name="night_mode">Night mode:</string>
+    <string name="day_night_switch">Day/night switch</string>
 </resources>

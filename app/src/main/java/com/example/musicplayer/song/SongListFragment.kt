@@ -12,6 +12,8 @@ import android.util.Log
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
+import android.view.View.GONE
+import android.view.View.VISIBLE
 import android.view.ViewGroup
 import android.widget.TextView
 import android.widget.Toast
@@ -113,7 +115,13 @@ class SongListFragment : Fragment(), OnItemClickListener {
     private fun loadSongs() {
         SongObserver.getInstance(requireContext()).findSongs()
             .observe(viewLifecycleOwner, Observer { songs ->
-                songListAdapter.setData(songs)
+                val noSongsTextView = view?.findViewById(R.id.songErrorTextView) as TextView
+                if(songs.isEmpty())
+                    noSongsTextView.visibility = VISIBLE
+                else{
+                    noSongsTextView.visibility = GONE
+                    songListAdapter.setData(songs)
+                }
             })
     }
 

@@ -2,18 +2,18 @@
 <menu xmlns:android="http://schemas.android.com/apk/res/android">
     <item
         android:id="@+id/songListFragment"
-        android:title="Songs"
+        android:title="@string/songs"
         android:icon="@drawable/ic_baseline_library_music_24" />
     <item
         android:id="@+id/playlistFragment"
-        android:title="Playlists"
+        android:title="@string/playlists"
         android:icon="@drawable/ic_baseline_playlist_play_24" />
     <item
         android:id="@+id/albumListFragment"
-        android:title="Albums"
+        android:title="@string/albums"
         android:icon="@drawable/ic_baseline_album_24" />
     <item
         android:id="@+id/radioListFragment"
-        android:title="Radio"
+        android:title="@string/radio"
         android:icon="@drawable/ic_baseline_radio_24" />
 </menu>

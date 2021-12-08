@@ -59,15 +59,15 @@ class SongListAdapter(private val context: Context, private val clickListener: O
 
     // Replace the contents of a view (invoked by the layout manager)
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
-       songList?.get(position)?.let{ song ->
-           holder.bind(song)
+        songList?.get(position)?.let{ song ->
+            holder.bind(song)
 
-           val contentUri = ContentUris.withAppendedId(MediaStore.Audio.Media.EXTERNAL_CONTENT_URI, song.id)
+            val contentUri = ContentUris.withAppendedId(MediaStore.Audio.Media.EXTERNAL_CONTENT_URI, song.id)
 
-           holder.itemView.setOnClickListener{
-               clickListener.onItemClick(contentUri)
-           }
-       }
+            holder.itemView.setOnClickListener{
+                clickListener.onItemClick(contentUri)
+            }
+        }
     }
 
     // Return the size of your dataset (invoked by the layout manager)

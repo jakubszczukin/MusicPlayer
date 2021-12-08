@@ -37,17 +37,12 @@ class SongObserver constructor(private val context: Context) {
         ).use { cursor ->
             if (cursor?.moveToFirst() == true) {
                 do {
-                    val id = cursor.getLong(cursor.getColumnIndex(MediaStore.Audio.Media._ID))
-                    val title =
-                        cursor.getString(cursor.getColumnIndex(MediaStore.Audio.Media.TITLE))
-                    val artist =
-                        cursor.getString(cursor.getColumnIndex(MediaStore.Audio.Media.ARTIST))
-                    val album =
-                        cursor.getString(cursor.getColumnIndex(MediaStore.Audio.Media.ALBUM))
-                    val albumId =
-                        cursor.getLong(cursor.getColumnIndex(MediaStore.Audio.Media.ALBUM_ID))
-                    val duration =
-                        cursor.getString(cursor.getColumnIndex(MediaStore.Audio.Media.DURATION))
+                    val id = cursor.getLong(cursor.getColumnIndexOrThrow(MediaStore.Audio.Media._ID))
+                    val title = cursor.getString(cursor.getColumnIndexOrThrow(MediaStore.Audio.Media.TITLE))
+                    val artist = cursor.getString(cursor.getColumnIndexOrThrow(MediaStore.Audio.Media.ARTIST))
+                    val album = cursor.getString(cursor.getColumnIndexOrThrow(MediaStore.Audio.Media.ALBUM))
+                    val albumId = cursor.getLong(cursor.getColumnIndexOrThrow(MediaStore.Audio.Media.ALBUM_ID))
+                    val duration = cursor.getString(cursor.getColumnIndexOrThrow(MediaStore.Audio.Media.DURATION))
                     val artworkUri = Uri.parse("content://media/external/audio/albumart")
                     val albumArtUri = ContentUris.withAppendedId(artworkUri, albumId)
                     songList.add(
@@ -62,6 +57,7 @@ class SongObserver constructor(private val context: Context) {
                         )
                     )
                 } while (cursor.moveToNext())
+                cursor.close()
             }
         }
         return songsLiveData.apply { value = songList }

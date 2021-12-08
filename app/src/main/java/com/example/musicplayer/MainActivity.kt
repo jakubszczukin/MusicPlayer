@@ -9,6 +9,7 @@ import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.provider.Settings
 import android.util.Log
+import android.view.Menu
 import android.widget.*
 import androidx.appcompat.app.AlertDialog
 import androidx.navigation.findNavController
@@ -42,6 +43,12 @@ class MainActivity : AppCompatActivity() {
         val bottomNavView =findViewById<BottomNavigationView>(R.id.bottom_navigation_view)
         val navController = findNavController(R.id.nav_fragment)
         bottomNavView.setupWithNavController(navController)
+    }
+
+    override fun onCreateOptionsMenu(menu: Menu?): Boolean {
+        // Initialize and inflate menu for action bar
+        menuInflater.inflate(R.menu.action_bar_menu, menu)
+        return super.onCreateOptionsMenu(menu)
     }
 
 
