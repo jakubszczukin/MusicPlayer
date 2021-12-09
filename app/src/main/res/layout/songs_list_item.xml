@@ -23,7 +23,7 @@
             android:layout_marginEnd="2dp"
             android:layout_marginBottom="2dp"
             android:background="@drawable/song_list_background"
-            android:contentDescription="Album image" />
+            android:contentDescription="Album image"/>
 
         <TextView
             android:id="@+id/songTitle"
@@ -38,7 +38,9 @@
             android:padding="5dp"
             android:scrollHorizontally="true"
             android:text="Song Name"
-            android:textSize="20sp" />
+            android:textSize="20sp"
+            android:minHeight="?android:attr/listPreferredItemHeightSmall"
+            android:textAppearance="?android:attr/textAppearanceListItemSmall"/>
 
         <TextView
             android:id="@+id/songArtist"
@@ -55,7 +57,9 @@
             android:padding="5dp"
             android:scrollHorizontally="true"
             android:text="Song artist"
-            android:textSize="14sp" />
+            android:textSize="14sp"
+            android:minHeight="?android:attr/listPreferredItemHeightSmall"
+            android:textAppearance="?android:attr/textAppearanceListItemSmall"/>/>
 
     </RelativeLayout>
 

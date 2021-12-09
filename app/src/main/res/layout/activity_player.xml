@@ -1,14 +1,138 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:weightSum="10"
     tools:context=".PlayerActivity">
+    <!--
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="7"
+            android:gravity="center"
+            android:orientation="vertical">
 
-    <com.google.android.exoplayer2.ui.PlayerView
-        android:id="@+id/playerView"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"/>
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:id="@+id/songName"
+                android:layout_margin="15dp"
+                android:ellipsize="marquee"
+                android:marqueeRepeatLimit="marquee_forever"
+                android:padding="10dp"
+                android:singleLine="true"
+                android:textSize="20sp"
+                android:textStyle="bold"
+                android:textColor="@color/blue_400" />
 
-</androidx.constraintlayout.widget.ConstraintLayout>
+            <ImageView
+                android:id="@+id/songArt"
+                android:layout_width="220dp"
+                android:layout_height="220dp"
+                android:layout_margin="8dp"
+                android:src="@drawable/ic_baseline_add_24"
+                />
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="60dp">
+
+                <SeekBar
+                    android:id="@+id/playerSeekBar"
+                    android:layout_width="250dp"
+                    android:layout_height="wrap_content"
+                    android:layout_centerInParent="true"
+                    android:layout_margin="15dp"
+                    android:layout_alignParentBottom="true"
+                    android:layout_marginBottom="30dp" />
+
+                <TextView
+                    android:id="@+id/playerStartSongTime"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_toStartOf="@id/playerSeekBar"
+                    android:layout_centerInParent="true"
+                    android:layout_alignParentStart="false"
+                    android:layout_marginLeft="10dp"
+                    android:text="0:10"
+                    android:textSize="16sp" />
+
+                <TextView
+                    android:id="@+id/playerStopSongTime"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_toEndOf="@id/playerSeekBar"
+                    android:layout_centerInParent="true"
+                    android:layout_alignParentEnd="false"
+                    android:layout_marginRight="10dp"
+                    android:text="4:10"
+                    android:textSize="16sp" />
+
+            </RelativeLayout>
+
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="3">
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent">
+
+                <Button
+                    android:id="@+id/playerStartButton"
+                    android:layout_width="75dp"
+                    android:layout_height="75dp"
+                    android:background="@drawable/ic_baseline_play_circle_filled_24"
+                    android:layout_centerHorizontal="true"
+                    />
+
+                <Button
+                    android:id="@+id/playerPreviousSong"
+                    android:layout_width="55dp"
+                    android:layout_height="55dp"
+                    android:layout_toEndOf="@+id/playerStartButton"
+                    android:background="@drawable/exo_ic_skip_next"
+                    android:layout_marginTop="10dp"
+                    android:layout_centerHorizontal="true" />
+
+
+                <Button
+                    android:id="@+id/playerNextSong"
+                    android:layout_width="55dp"
+                    android:layout_height="55dp"
+                    android:layout_toStartOf="@+id/playerStartButton"
+                    android:background="@drawable/exo_controls_previous"
+                    android:layout_marginTop="10dp"
+                    android:layout_centerHorizontal="true" />
+
+                <com.gauravk.audiovisualizer.visualizer.BlastVisualizer
+                    xmlns:custom="http://schemas.android.com/apk/res-auto"
+                    android:id="@+id/blast"
+                    android:layout_width="match_parent"
+                    android:layout_height="120dp"
+                    android:layout_alignParentBottom="true"
+                    custom:avDensity="0.8"
+                    custom:avType="fill"
+                    custom:avColor="@color/av_dark_blue"
+                    custom:avSpeed="normal"/>
+
+
+            </RelativeLayout>
+
+
+        </LinearLayout>
+  -->
+
+        <com.google.android.exoplayer2.ui.PlayerView
+            android:id="@+id/playerView"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"/>
+
+</LinearLayout>

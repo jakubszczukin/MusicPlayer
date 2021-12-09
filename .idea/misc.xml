@@ -3,11 +3,15 @@
   <component name="DesignSurface">
     <option name="filePathToZoomLevelMap">
       <map>
+        <entry key="..\:/Users/karet/AndroidStudioProjects/Android-Music-Player-master/caches/transforms-3/43da1102b1fbf47f00a7afa12ce24440/transformed/jetified-exoplayer-ui-2.15.1/res/layout/exo_player_control_view.xml" value="0.14074074074074075" />
+        <entry key="..\:/Users/karet/AndroidStudioProjects/Android-Music-Player-master/caches/transforms-3/43da1102b1fbf47f00a7afa12ce24440/transformed/jetified-exoplayer-ui-2.15.1/res/layout/exo_player_view.xml" value="0.14074074074074075" />
         <entry key="..\:/Users/karet/AndroidStudioProjects/MusicPlayer/app/src/main/res/drawable/bottom_menu_tab_color.xml" value="0.3416666666666667" />
         <entry key="..\:/Users/karet/AndroidStudioProjects/MusicPlayer/app/src/main/res/drawable/ic_launcher_background.xml" value="0.3416666666666667" />
         <entry key="..\:/Users/karet/AndroidStudioProjects/MusicPlayer/app/src/main/res/layout/activity_main.xml" value="0.20871327254305977" />
         <entry key="..\:/Users/karet/AndroidStudioProjects/MusicPlayer/app/src/main/res/layout/activity_player.xml" value="0.28940217391304346" />
         <entry key="..\:/Users/karet/AndroidStudioProjects/MusicPlayer/app/src/main/res/layout/activity_test_radio.xml" value="0.28940217391304346" />
+        <entry key="..\:/Users/karet/AndroidStudioProjects/MusicPlayer/app/src/main/res/layout/exo_player_control_view.xml" value="0.4157608695652174" />
+        <entry key="..\:/Users/karet/AndroidStudioProjects/MusicPlayer/app/src/main/res/layout/exo_player_view.xml" value="0.14074074074074075" />
         <entry key="..\:/Users/karet/AndroidStudioProjects/MusicPlayer/app/src/main/res/layout/fragment_album_list.xml" value="0.20871327254305977" />
         <entry key="..\:/Users/karet/AndroidStudioProjects/MusicPlayer/app/src/main/res/layout/fragment_radio_list.xml" value="0.20871327254305977" />
         <entry key="..\:/Users/karet/AndroidStudioProjects/MusicPlayer/app/src/main/res/layout/radio_list_item.xml" value="0.20871327254305977" />

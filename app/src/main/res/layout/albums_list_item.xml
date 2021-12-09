@@ -38,7 +38,9 @@
             android:padding="5dp"
             android:scrollHorizontally="true"
             android:text="Album Name"
-            android:textSize="20sp" />
+            android:textSize="20sp"
+            android:minHeight="?android:attr/listPreferredItemHeightSmall"
+            android:textAppearance="?android:attr/textAppearanceListItemSmall"/>
 
         <TextView
             android:id="@+id/albumArtist"
@@ -55,7 +57,9 @@
             android:padding="5dp"
             android:scrollHorizontally="true"
             android:text="Album artist"
-            android:textSize="14sp" />
+            android:textSize="14sp"
+            android:minHeight="?android:attr/listPreferredItemHeightSmall"
+            android:textAppearance="?android:attr/textAppearanceListItemSmall"/>
 
     </RelativeLayout>
 
