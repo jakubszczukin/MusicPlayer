@@ -1,25 +1,35 @@
 package com.example.musicplayer
 
+import android.app.Notification
+import android.app.PendingIntent
+import android.content.Intent
+import android.graphics.Bitmap
 import android.net.Uri
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.widget.ListView
+import androidx.appcompat.app.AppCompatActivity
+import androidx.core.app.NotificationCompat
+import androidx.core.app.ServiceCompat.stopForeground
+import com.google.android.exoplayer2.ExoPlayer
 import com.google.android.exoplayer2.MediaItem
+import com.google.android.exoplayer2.Player
 import com.google.android.exoplayer2.SimpleExoPlayer
-import com.google.android.exoplayer2.source.MediaSource
-import com.google.android.exoplayer2.source.hls.HlsMediaSource
+import com.google.android.exoplayer2.offline.DownloadService.startForeground
+import com.google.android.exoplayer2.ui.PlayerNotificationManager
 import com.google.android.exoplayer2.ui.PlayerView
-import com.google.android.exoplayer2.upstream.DefaultHttpDataSource
-import com.google.android.exoplayer2.util.Log
 import com.google.android.exoplayer2.util.Util
 
 const val PLAYER_INTENT_MEDIA_ID = "mediaId"
 
 class PlayerActivity : AppCompatActivity() {
 
-    private var mPlayer: SimpleExoPlayer? = null
+    private val notificationId = 1
+    private val channelId = "channel_id"
+
+    private var mPlayer: ExoPlayer? = null
     private lateinit var playerView: PlayerView
     private lateinit var listView: ListView
+    private lateinit var playerNotificationManager: PlayerNotificationManager.Builder
     private var playWhenReady = true
     private var currentWindow = 0
     private var playbackPosition: Long = 0
@@ -33,11 +43,44 @@ class PlayerActivity : AppCompatActivity() {
         playerView = findViewById(R.id.playerView)
 
         songUri = Uri.parse(intent.getStringExtra(PLAYER_INTENT_MEDIA_ID))
-
     }
 
+    private fun initPlayerNotificationManager(){
+        playerNotificationManager = PlayerNotificationManager.Builder(this, notificationId, channelId)
+        playerNotificationManager.setMediaDescriptionAdapter(object: PlayerNotificationManager.MediaDescriptionAdapter{
+            override fun getCurrentContentTitle(player: Player): CharSequence {
+                return "Title"
+            }
+
+            override fun createCurrentContentIntent(player: Player): PendingIntent? {
+                val intent = Intent(applicationContext, PlayerActivity::class.java)
+                return PendingIntent.getActivity(applicationContext, 0, intent, PendingIntent.FLAG_IMMUTABLE)
+            }
+
+            override fun getCurrentContentText(player: Player): CharSequence? {
+                return "Description"
+            }
+
+            override fun getCurrentSubText(player: Player): CharSequence { return ""}
+
+            override fun getCurrentLargeIcon(
+                player: Player,
+                callback: PlayerNotificationManager.BitmapCallback
+            ): Bitmap? {
+                return null
+            }
+
+        })
+
+        playerNotificationManager.setNotificationListener(object: PlayerNotificationManager.NotificationListener{})
+        playerNotificationManager.setChannelNameResourceId(R.string.channel_name)
+        playerNotificationManager.setChannelDescriptionResourceId(R.string.channel_desc)
+        playerNotificationManager.build()
+    }
+
+
     private fun initPlayer() {
-        mPlayer = SimpleExoPlayer.Builder(this).build()
+        mPlayer = ExoPlayer.Builder(this).build()
         // Bind the player to the view.
         playerView.player = mPlayer
 
