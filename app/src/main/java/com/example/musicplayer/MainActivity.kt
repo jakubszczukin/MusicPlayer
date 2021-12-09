@@ -12,6 +12,7 @@ import android.util.Log
 import android.view.Menu
 import android.widget.*
 import androidx.appcompat.app.AlertDialog
+import androidx.appcompat.app.AppCompatDelegate
 import androidx.navigation.findNavController
 import androidx.navigation.ui.setupWithNavController
 import com.google.android.exoplayer2.MediaItem
@@ -23,6 +24,7 @@ import com.google.android.exoplayer2.upstream.DefaultHttpDataSource
 import com.google.android.exoplayer2.upstream.DefaultHttpDataSourceFactory
 import com.google.android.exoplayer2.util.Util
 import com.google.android.material.bottomnavigation.BottomNavigationView
+import com.google.android.material.switchmaterial.SwitchMaterial
 import com.karumi.dexter.Dexter
 import com.karumi.dexter.MultiplePermissionsReport
 import com.karumi.dexter.PermissionToken
@@ -40,7 +42,7 @@ class MainActivity : AppCompatActivity() {
         setContentView(R.layout.activity_main)
 
         // Initialize the bottom nav view and create object
-        val bottomNavView =findViewById<BottomNavigationView>(R.id.bottom_navigation_view)
+        val bottomNavView = findViewById<BottomNavigationView>(R.id.bottom_navigation_view)
         val navController = findNavController(R.id.nav_fragment)
         bottomNavView.setupWithNavController(navController)
     }
@@ -48,6 +50,15 @@ class MainActivity : AppCompatActivity() {
     override fun onCreateOptionsMenu(menu: Menu?): Boolean {
         // Initialize and inflate menu for action bar
         menuInflater.inflate(R.menu.action_bar_menu, menu)
+
+        val themeSwitch = findViewById<SwitchMaterial>(R.id.dayNightSwitch)
+        themeSwitch.setOnCheckedChangeListener{ _, id ->
+            when(id){
+                true -> AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_YES)
+                false -> AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_NO)
+            }
+        }
+
         return super.onCreateOptionsMenu(menu)
     }
 

@@ -1,4 +1,5 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
@@ -29,8 +30,14 @@
         <ImageButton android:id="@id/exo_repeat_toggle"
             style="@style/ExoMediaButton"/>
 
-        <ImageButton android:id="@id/exo_play"
-            style="@style/ExoMediaButton.Play"/>
+        <ImageButton
+            android:id="@+id/play"
+            android:layout_width="32dp"
+            android:layout_height="32dp"
+            android:adjustViewBounds="true"
+            android:padding="2dp"
+            android:background="@drawable/ic_baseline_play_circle_filled_24"
+            app:tint="@color/blue_800" />
 
         <ImageButton android:id="@id/exo_pause"
             style="@style/ExoMediaButton.Pause"/>

@@ -11,6 +11,7 @@ import android.widget.AdapterView
 import android.widget.TextView
 import android.widget.Toast
 import androidx.lifecycle.Observer
+import androidx.recyclerview.widget.DividerItemDecoration
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.example.musicplayer.MainActivity
@@ -48,6 +49,12 @@ class AlbumListFragment : Fragment(), OnItemClickListener {
         albumsRecyclerView.layoutManager = LinearLayoutManager(view.context)
 
         albumsRecyclerView.adapter = albumListAdapter
+
+        val dividerItemDecoration = DividerItemDecoration(
+            albumsRecyclerView.context,
+            LinearLayoutManager.VERTICAL
+        )
+        albumsRecyclerView.addItemDecoration(dividerItemDecoration)
     }
 
     private fun loadAlbums(){

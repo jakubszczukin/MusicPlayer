@@ -29,6 +29,8 @@ class AlbumListAdapter(private val context: Context, private val clickListener: 
             albumTitle.text = album.name
             albumArtist.text = album.artist
 
+            albumTitle.isSelected = true
+
             Picasso.get()
                 .load(album.coverUri)
                 .resize(96, 96)

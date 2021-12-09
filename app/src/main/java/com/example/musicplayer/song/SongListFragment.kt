@@ -34,6 +34,10 @@ import com.karumi.dexter.listener.PermissionDeniedResponse
 import com.karumi.dexter.listener.PermissionGrantedResponse
 import com.karumi.dexter.listener.PermissionRequest
 import com.karumi.dexter.listener.single.PermissionListener
+import androidx.recyclerview.widget.DividerItemDecoration
+
+
+
 
 
 class SongListFragment : Fragment(), OnItemClickListener {
@@ -63,6 +67,12 @@ class SongListFragment : Fragment(), OnItemClickListener {
         songsRecyclerView.layoutManager = LinearLayoutManager(view.context)
 
         songsRecyclerView.adapter = songListAdapter
+
+        val dividerItemDecoration = DividerItemDecoration(
+            songsRecyclerView.context,
+            LinearLayoutManager.VERTICAL
+        )
+        songsRecyclerView.addItemDecoration(dividerItemDecoration)
 
     }
 

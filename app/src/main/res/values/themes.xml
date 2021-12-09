@@ -12,7 +12,8 @@
         <!-- Status bar color. -->
         <item name="android:statusBarColor" tools:targetApi="l">?attr/colorPrimaryVariant</item>
         <!-- Customize your theme here. -->
-        <item name="android:colorBackground">@color/white</item> <!-- Background color -->
+        <!--<item name="android:colorBackground">@color/white</item>  Background color -->
+        <item name="android:colorBackground">@color/white</item>
         <item name="colorOnBackground">@color/black</item> <!-- Color that text/icons drawn on top of the background color should have -->
         <item name="colorAccent">@color/orange_700</item> <!-- Color to call attention to key elements ? -->
         <item name="colorOnSurface">@color/orange_700</item>
