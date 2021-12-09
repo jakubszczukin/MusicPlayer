@@ -10,7 +10,6 @@ import android.os.Bundle
 import android.provider.Settings
 import android.util.Log
 import android.view.Menu
-import android.view.MenuItem
 import android.widget.*
 import androidx.appcompat.app.AlertDialog
 import androidx.navigation.findNavController
@@ -46,13 +45,13 @@ class MainActivity : AppCompatActivity() {
         bottomNavView.setupWithNavController(navController)
     }
 
-    override fun onCreateOptionsMenu(menu: Menu): Boolean {
+    override fun onCreateOptionsMenu(menu: Menu?): Boolean {
         // Initialize and inflate menu for action bar
-        menuInflater.inflate(R.menu.action_bar_menu, menu);
-        val item = menu.findItem(R.id.dayNightSwitch)
-        item.setActionView(R.layout.day_night_switch_layout) // Show the switch
-        return true
+        menuInflater.inflate(R.menu.action_bar_menu, menu)
+        return super.onCreateOptionsMenu(menu)
     }
+
+
 
 
 /*

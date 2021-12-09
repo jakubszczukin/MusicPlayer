@@ -22,7 +22,10 @@
             android:padding="10dp"
             android:scrollHorizontally="true"
             android:text="Song Name"
-            android:textSize="20sp" />
+            android:textSize="20sp"
+            android:gravity="center_vertical"
+            android:minHeight="?android:attr/listPreferredItemHeightSmall"
+            android:textAppearance="?android:attr/textAppearanceListItemSmall"/>/>
 
     </RelativeLayout>
 

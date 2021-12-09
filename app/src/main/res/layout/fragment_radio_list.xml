@@ -8,6 +8,8 @@
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/radioRecyclerView"
+        android:layout_marginTop="25dp"
+        android:layout_marginBottom="25dp"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"/>
@@ -16,11 +18,13 @@
         android:id="@+id/floating_action_button"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginEnd="24dp"
-        android:layout_marginBottom="62dp"
-        android:contentDescription="Add radio station"
-        app:srcCompat="@drawable/ic_baseline_add_24"
+        android:layout_marginEnd="32dp"
+        android:layout_marginBottom="128dp"
+        android:backgroundTint="@color/orange_700"
+        android:contentDescription="@string/add_radio_station"
+        app:fabSize="normal"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent" />
+        app:layout_constraintEnd_toEndOf="parent"
+        app:srcCompat="@drawable/ic_baseline_add_24" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
