@@ -9,4 +9,14 @@
     <string name="add_radio_station">Add radio station</string>
     <string name="night_mode">Night mode:</string>
     <string name="day_night_switch">Day/night switch</string>
+    <string name="channel_name">Music player</string>
+    <string name="channel_desc">Music player</string>
+    <string name="radio_name">Radio name</string>
+    <string name="required">Required</string>
+    <string name="radio_url">Radio URL</string>
+    <string name="finish">Finish</string>
+    <string name="delete_channel">Delete channel</string>
+    <string name="song_name">Song Name</string>
+    <string name="no_radio_channels_found">No radio channels found</string>
+    <string name="track_image">Track image</string>
 </resources>

@@ -45,18 +45,18 @@ abstract class AppDatabase : RoomDatabase(){
             super.onCreate(db)
             INSTANCE?.let{ database ->
                 scope.launch{
-                    populateDatabase(database.radioDao())
+                    //populateDatabase(database.radioDao())
                 }
             }
         }
 
-        suspend fun populateDatabase(radioDao: RadioDao){
+        fun populateDatabase(radioDao: RadioDao){
             radioDao.deleteAll()
 
             //add sample radio
-            var radio = Radio(1, "Radio1", "http://streaming.radio.lublin.pl:8000/128k")
+            var radio = Radio("Radio1", "http://streaming.radio.lublin.pl:8000/128k")
             radioDao.insert(radio)
-            radio = Radio(2, "Radio2", "http://streaming.radio.lublin.pl:8000/128k")
+            radio = Radio("Radio2", "http://streaming.radio.lublin.pl:8000/128k")
             radioDao.insert(radio)
         }
     }

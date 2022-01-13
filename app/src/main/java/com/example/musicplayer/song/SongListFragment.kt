@@ -23,10 +23,6 @@ import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.Observer
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
-import com.example.musicplayer.MainActivity
-import com.example.musicplayer.PLAYER_INTENT_MEDIA_ID
-import com.example.musicplayer.PlayerActivity
-import com.example.musicplayer.R
 import com.example.musicplayer.interfaces.OnItemClickListener
 import com.karumi.dexter.Dexter
 import com.karumi.dexter.PermissionToken
@@ -35,10 +31,7 @@ import com.karumi.dexter.listener.PermissionGrantedResponse
 import com.karumi.dexter.listener.PermissionRequest
 import com.karumi.dexter.listener.single.PermissionListener
 import androidx.recyclerview.widget.DividerItemDecoration
-
-
-
-
+import com.example.musicplayer.*
 
 class SongListFragment : Fragment(), OnItemClickListener {
 
@@ -135,10 +128,20 @@ class SongListFragment : Fragment(), OnItemClickListener {
             })
     }
 
-    override fun onItemClick(contentUri: Uri) {
+    override fun onItemClick(contentUri: Uri, contentName: String?) {
         val intent = Intent(activity?.baseContext, PlayerActivity::class.java)
         intent.putExtra(PLAYER_INTENT_MEDIA_ID, contentUri.toString())
+        intent.putExtra(PLAYER_INTENT_MEDIA_NAME, contentName)
         startActivity(intent)
+    }
+
+    override fun onItemClick(id: Long) {
+        TODO("Not yet implemented")
+    }
+
+    //mby left for later idk
+    override fun onItemDeleteClick(id: Long) {
+        return
     }
 
 }

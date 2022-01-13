@@ -48,8 +48,14 @@ dependencies {
     // Audio visualiser
     implementation 'com.gauravk.audiovisualizer:audiovisualizer:0.9.2'
 
-    // Full ExoPlayer library
+    // Full core ExoPlayer library
     implementation 'com.google.android.exoplayer:exoplayer:2.16.1'
+
+    // Exoplayer MediaSession extension
+    implementation 'com.google.android.exoplayer:extension-mediasession:2.16.1'
+
+    // Exoplayer RTSP support
+    implementation 'com.google.android.exoplayer:exoplayer-rtsp:2.16.1'
 
     // Material Design
     implementation 'com.google.android.material:material:1.4.0'

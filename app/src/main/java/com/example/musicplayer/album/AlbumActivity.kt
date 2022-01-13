@@ -1,25 +1,20 @@
-package com.example.musicplayer
+package com.example.musicplayer.album
 
+import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.Menu
-import androidx.appcompat.app.AppCompatActivity
 import androidx.appcompat.app.AppCompatDelegate
 import androidx.navigation.findNavController
 import androidx.navigation.ui.setupWithNavController
+import com.example.musicplayer.R
 import com.google.android.material.bottomnavigation.BottomNavigationView
 import com.google.android.material.switchmaterial.SwitchMaterial
 
-class MainActivity : AppCompatActivity() {
-
-
+class AlbumActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_main)
+        setContentView(R.layout.activity_album)
 
-        // Initialize the bottom nav view and create object
-        val bottomNavView = findViewById<BottomNavigationView>(R.id.bottom_navigation_view)
-        val navController = findNavController(R.id.nav_fragment)
-        bottomNavView.setupWithNavController(navController)
     }
 
     override fun onCreateOptionsMenu(menu: Menu?): Boolean {
@@ -36,12 +31,4 @@ class MainActivity : AppCompatActivity() {
 
         return super.onCreateOptionsMenu(menu)
     }
-
-
-
-
-/*
-   */
-
 }
-

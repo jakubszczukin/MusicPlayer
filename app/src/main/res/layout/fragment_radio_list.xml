@@ -8,18 +8,32 @@
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/radioRecyclerView"
-        android:layout_marginTop="25dp"
-        android:layout_marginBottom="25dp"
+        android:layout_width="412dp"
+        android:layout_height="606dp"
+        android:paddingTop="10dp"
+        app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"/>
+        android:id="@+id/radioErrorTextView"
+        android:layout_marginTop="55dp"
+        android:layout_marginBottom="55dp"
+        android:text="@string/no_radio_channels_found"
+        android:textSize="20sp"
+        android:textStyle="bold"
+        android:textColor="@color/purple_500"
+        android:gravity="center"
+        android:visibility="gone"/>
 
     <com.google.android.material.floatingactionbutton.FloatingActionButton
         android:id="@+id/floating_action_button"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginEnd="32dp"
-        android:layout_marginBottom="128dp"
+        android:layout_marginEnd="28dp"
+        android:layout_marginBottom="52dp"
         android:backgroundTint="@color/orange_700"
         android:contentDescription="@string/add_radio_station"
         app:fabSize="normal"

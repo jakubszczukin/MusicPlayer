@@ -65,7 +65,7 @@ class SongListAdapter(private val context: Context, private val clickListener: O
             val contentUri = ContentUris.withAppendedId(MediaStore.Audio.Media.EXTERNAL_CONTENT_URI, song.id)
 
             holder.itemView.setOnClickListener{
-                clickListener.onItemClick(contentUri)
+                clickListener.onItemClick(contentUri, song.title)
             }
         }
     }

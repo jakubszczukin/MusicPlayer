@@ -17,8 +17,12 @@
         android:theme="@style/Theme.MusicPlayer"
         android:usesCleartextTraffic="true">
         <activity
-            android:name=".TestRadioActivity"
+            android:name=".album.AlbumActivity"
             android:exported="false" />
+        <activity
+            android:name=".radio.RadioActivity"
+            android:exported="false"
+            android:parentActivityName=".MainActivity" />
         <activity
             android:name=".PlayerActivity"
             android:exported="false" />

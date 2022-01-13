@@ -13,55 +13,99 @@
      See the License for the specific language governing permissions and
      limitations under the License.
 -->
-<merge xmlns:android="http://schemas.android.com/apk/res/android">
+<merge xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
 
-    <com.google.android.exoplayer2.ui.AspectRatioFrameLayout android:id="@id/exo_content_frame"
+    <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:layout_gravity="center">
+        android:layout_height="match_parent">
 
-        <!-- Video surface will be inserted as the first child of the content frame. -->
+        <com.google.android.exoplayer2.ui.AspectRatioFrameLayout
+            android:id="@id/exo_content_frame"
+            android:layout_width="149dp"
+            android:layout_height="149dp"
+            android:layout_marginTop="96dp"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintRight_toRightOf="parent"
+            app:layout_constraintTop_toTopOf="parent">
 
-        <View android:id="@id/exo_shutter"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:background="@android:color/black"/>
+            <!-- Video surface will be inserted as the first child of the content frame. -->
 
-        <ImageView android:id="@id/exo_artwork"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:scaleType="fitXY"/>
+            <View
+                android:id="@id/exo_shutter"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:background="@android:color/black" />
 
-        <com.google.android.exoplayer2.ui.SubtitleView android:id="@id/exo_subtitles"
+            <ImageView
+                android:id="@id/exo_artwork"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:scaleType="fitXY"
+                android:contentDescription="@string/track_image" />
+
+            <com.google.android.exoplayer2.ui.SubtitleView
+                android:id="@id/exo_subtitles"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent" />
+
+            <ProgressBar
+                android:id="@id/exo_buffering"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:indeterminate="true" />
+
+            <TextView
+                android:id="@id/exo_error_message"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_gravity="center"
+                android:background="@color/exo_error_message_background_color"
+                android:gravity="center"
+                android:padding="16dp" />
+
+        </com.google.android.exoplayer2.ui.AspectRatioFrameLayout>
+
+        <FrameLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:layout_constraintTop_toBottomOf="@+id/exo_content_frame"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintRight_toRightOf="parent"
+            android:layout_marginTop="5dp"
+            >
+            <TextView
+                android:layout_height="wrap_content"
+                android:layout_width="wrap_content"
+                android:id="@+id/songName"
+                android:text="Nazwa utworu"
+                android:gravity="center_horizontal"
+                android:textSize="22sp"
+                android:textStyle="italic"
+                android:textColor="@color/blue_400"
+                android:ellipsize="marquee"
+                android:marqueeRepeatLimit="marquee_forever"
+                android:scrollHorizontally="true"
+                android:focusable="true"
+                android:focusableInTouchMode="true"
+                android:maxLines="1"
+                android:singleLine="true"
+                android:fadingEdge="horizontal"
+                />
+        </FrameLayout>
+
+        <FrameLayout android:id="@id/exo_ad_overlay"
             android:layout_width="match_parent"
             android:layout_height="match_parent"/>
 
-        <ProgressBar android:id="@id/exo_buffering"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:indeterminate="true"
-            android:layout_gravity="center"/>
-
-        <TextView android:id="@id/exo_error_message"
+        <FrameLayout android:id="@id/exo_overlay"
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:layout_gravity="center"
-            android:gravity="center"
-            android:background="@color/exo_error_message_background_color"
-            android:padding="16dp"/>
+            android:layout_height="match_parent"/>
 
-    </com.google.android.exoplayer2.ui.AspectRatioFrameLayout>
+        <View android:id="@id/exo_controller_placeholder"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"/>
 
-    <FrameLayout android:id="@id/exo_ad_overlay"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"/>
-
-    <FrameLayout android:id="@id/exo_overlay"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"/>
-
-    <View android:id="@id/exo_controller_placeholder"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"/>
-
+    </androidx.constraintlayout.widget.ConstraintLayout>
 </merge>

@@ -3,54 +3,31 @@ package com.example.musicplayer.radio
 import android.app.Activity
 import android.content.Intent
 import android.net.Uri
-import android.os.AsyncTask
 import android.os.Bundle
+import android.util.Log
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.Button
+import android.widget.TextView
 import android.widget.Toast
 import androidx.activity.result.contract.ActivityResultContracts
 import androidx.fragment.app.viewModels
+import androidx.lifecycle.Observer
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
-import androidx.room.Room
 import com.example.musicplayer.PLAYER_INTENT_MEDIA_ID
+import com.example.musicplayer.PLAYER_INTENT_MEDIA_NAME
 import com.example.musicplayer.PlayerActivity
 import com.example.musicplayer.R
-import com.example.musicplayer.TestRadioActivity
-import com.example.musicplayer.database.AppDatabase
+import com.example.musicplayer.interfaces.OnItemClickListener
 import com.google.android.material.floatingactionbutton.FloatingActionButton
 
-class RadioListFragment : Fragment() {
-
-    private val getResult = registerForActivityResult(
-        ActivityResultContracts.StartActivityForResult()
-    ){
-        var name: String
-        var id: Long
-        var uri: Uri
-        if(it.resultCode == Activity.RESULT_OK){
-            it.data?.getLongExtra("ID", 0)?.let{ reply ->
-                id = reply
-            }
-            it.data?.getStringExtra("NAME")?.let{ reply ->
-                name = reply
-            }
-            it.data?.getStringExtra("URI")?.let{ reply ->
-                uri = Uri.parse(reply)
-            }
-        }else{
-            Toast.makeText(context, "Blad podczas zapisywania", Toast.LENGTH_LONG).show()
-        }
-    }
-
+class RadioListFragment : Fragment(), OnItemClickListener {
 
     private val radioViewModel: RadioViewModel by viewModels{
         RadioViewModel.RadioViewModelFactory((activity?.application as RadioApplication).repository)
     }
-
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
     }
@@ -66,20 +43,46 @@ class RadioListFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
+        val getResult = registerForActivityResult(
+            ActivityResultContracts.StartActivityForResult()
+        ){
+            var name = ""
+            var uri = ""
+            if(it.resultCode == Activity.RESULT_OK){
+                it.data?.getStringExtra(RadioActivity.EXTRA_REPLY_NAME)?.let{ reply ->
+                    name = reply
+                }
+                it.data?.getStringExtra(RadioActivity.EXTRA_REPLY_URI)?.let{ reply ->
+                    uri = reply
+                }
+                val radio = Radio(name, uri)
+                radioViewModel.insert(radio)
+            }else{
+                Toast.makeText(context, "Error while saving", Toast.LENGTH_LONG).show()
+            }
+        }
+
         val recyclerView = view.findViewById<RecyclerView>(R.id.radioRecyclerView)
-        val adapter = RadioListAdapter()
+        val adapter = RadioListAdapter(this)
         recyclerView.adapter = adapter
         recyclerView.layoutManager = LinearLayoutManager(context)
 
+        val noChannelsTextView = view.findViewById<TextView>(R.id.radioErrorTextView)
+
         radioViewModel.radioList.observe(viewLifecycleOwner) { radios ->
-            radios.let{
-                adapter.submitList(it)
+            if(radios.isEmpty())
+                noChannelsTextView.visibility = View.VISIBLE
+            else{
+                noChannelsTextView.visibility = View.GONE
+                radios.let{
+                    adapter.submitList(it)
+                }
             }
         }
 
         val fab = view.findViewById<FloatingActionButton>(R.id.floating_action_button)
         fab.setOnClickListener{
-            val intent = Intent(activity?.applicationContext, TestRadioActivity::class.java)
+            val intent = Intent(activity?.applicationContext, RadioActivity::class.java)
             getResult.launch(intent)
         }
 
@@ -87,9 +90,25 @@ class RadioListFragment : Fragment() {
         val radioButton = view.findViewById(R.id.radioButton) as Button
         radioButton.setOnClickListener{
             val intent = Intent(activity?.baseContext, PlayerActivity::class.java)
-            intent.putExtra(PLAYER_INTENT_MEDIA_ID, "http://streaming.radio.lublin.pl:8000/128k")
+            intent.putExtra(PLAYER_INTENT_MEDIA_ID, "http://streaming.radio.lublin.pl:8843/128k")
             startActivity(intent)
         }*/
+    }
+
+    override fun onItemClick(contentUri: Uri, contentName: String?) {
+        Log.d("TEST", "ONITEMCLICK URI = {$contentUri}")
+        val intent = Intent(activity?.baseContext, PlayerActivity::class.java)
+        intent.putExtra(PLAYER_INTENT_MEDIA_ID, contentUri.toString())
+        intent.putExtra(PLAYER_INTENT_MEDIA_NAME, contentName)
+        startActivity(intent)
+    }
+
+    override fun onItemClick(id: Long) {
+        TODO("Not yet implemented")
+    }
+
+    override fun onItemDeleteClick(id: Long) {
+        radioViewModel.deleteById(id)
     }
 
 }

@@ -6,6 +6,8 @@ import android.os.Bundle
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
+import android.view.View.GONE
+import android.view.View.VISIBLE
 import android.view.ViewGroup
 import android.widget.AdapterView
 import android.widget.TextView
@@ -25,8 +27,6 @@ class AlbumListFragment : Fragment(), OnItemClickListener {
 
     private lateinit var albumsRecyclerView: RecyclerView
     private lateinit var albumListAdapter: AlbumListAdapter
-    private lateinit var albumErrorTextView: TextView
-    private var isAlbumListEmpty = false
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -60,20 +60,32 @@ class AlbumListFragment : Fragment(), OnItemClickListener {
     private fun loadAlbums(){
         AlbumObserver.getInstance(requireContext()).findAlbums()
             .observe(viewLifecycleOwner, Observer { albums ->
-                if(albums == null)
-                    isAlbumListEmpty = true
+                val noAlbumsTextView = view?.findViewById(R.id.albumErrorTextView) as TextView
+                if(albums.isEmpty())
+                    noAlbumsTextView.visibility = VISIBLE
                 else{
-                    isAlbumListEmpty = false
+                    noAlbumsTextView.visibility = GONE
                     albumListAdapter.setData(albums)
                 }
             })
     }
 
-    override fun onItemClick(contentUri: Uri){
-        Toast.makeText(context, "Album clicked -> TODO", Toast.LENGTH_SHORT).show()
-        //val intent = Intent(activity?.baseContext, PlayerActivity::class.java)
-        //intent.putExtra(PLAYER_INTENT_MEDIA_ID, contentUri.toString())
-        //startActivity(intent)
+    /*
+    Clicking on a album should open a new activity and send an intent with query ? or maybe list of songs in the album and query inside the activity
+     */
+    override fun onItemClick(contentUri: Uri, contentName: String?){
+        return
+    }
+
+    override fun onItemClick(id: Long) {
+        val intent = Intent(activity?.baseContext, AlbumActivity::class.java)
+        intent.putExtra(PLAYER_INTENT_MEDIA_ID, id)
+        startActivity(intent)
+    }
+
+    //mby left for later idk
+    override fun onItemDeleteClick(id: Long) {
+        return
     }
 
 }

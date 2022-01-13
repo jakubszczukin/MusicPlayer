@@ -21,9 +21,9 @@ class AlbumListAdapter(private val context: Context, private val clickListener: 
     private var albumList: List<Album>? = null
 
     class ViewHolder(view: View, context: Context) : RecyclerView.ViewHolder(view){
-        val albumTitle: TextView = view.findViewById(R.id.albumTitle)
-        val albumArtist: TextView = view.findViewById(R.id.albumArtist)
-        val albumImage: ImageView = view.findViewById(R.id.albumImage)
+        private val albumTitle: TextView = view.findViewById(R.id.albumTitle)
+        private val albumArtist: TextView = view.findViewById(R.id.albumArtist)
+        private val albumImage: ImageView = view.findViewById(R.id.albumImage)
 
         fun bind(album: Album){
             albumTitle.text = album.name
@@ -63,7 +63,7 @@ class AlbumListAdapter(private val context: Context, private val clickListener: 
             val contentUri = ContentUris.withAppendedId(MediaStore.Audio.Media.EXTERNAL_CONTENT_URI, album.id)
 
             holder.itemView.setOnClickListener{
-                clickListener.onItemClick(contentUri)
+                clickListener.onItemClick(album.id)
             }
         }
     }

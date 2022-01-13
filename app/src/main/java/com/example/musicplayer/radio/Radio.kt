@@ -7,8 +7,10 @@ import androidx.room.PrimaryKey
 
 @Entity
 data class Radio(
-
-    @PrimaryKey val id: Long,
-    @ColumnInfo(name = "name") val name: String,
-    @ColumnInfo(name = "uri") val uri: String
-)
+    //@PrimaryKey(autoGenerate = true) val id: Long = Long.MIN_VALUE,
+    @ColumnInfo(name = "name") var name: String,
+    @ColumnInfo(name = "uri") var uri: String
+){
+    @PrimaryKey(autoGenerate = true)
+    var id: Long = 0
+}
