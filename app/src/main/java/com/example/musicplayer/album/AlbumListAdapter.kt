@@ -60,10 +60,10 @@ class AlbumListAdapter(private val context: Context, private val clickListener: 
         albumList?.get(position)?.let{ album ->
             holder.bind(album)
 
-            val contentUri = ContentUris.withAppendedId(MediaStore.Audio.Media.EXTERNAL_CONTENT_URI, album.id)
+            //val contentUri = ContentUris.withAppendedId(MediaStore.Audio.Media.EXTERNAL_CONTENT_URI, album.id)
 
             holder.itemView.setOnClickListener{
-                clickListener.onItemClick(album.id)
+                clickListener.onItemClick(album.id, album.coverUri, album.name)
             }
         }
     }

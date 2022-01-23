@@ -41,8 +41,6 @@ class AlbumObserver constructor(private val context: Context) {
             sortOrder
         )
 
-        Log.d("ARRAY", projection.toString())
-
         if(cursor != null){
             while(cursor.moveToNext()){
                 val albumId = cursor.getLong(cursor.getColumnIndexOrThrow(MediaStore.Audio.Albums._ID))

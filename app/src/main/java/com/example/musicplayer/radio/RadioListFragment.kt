@@ -95,8 +95,11 @@ class RadioListFragment : Fragment(), OnItemClickListener {
         }*/
     }
 
+    override fun onItemClick(id: Long, uri: Uri, name: String?) {
+        TODO("Not yet implemented")
+    }
+
     override fun onItemClick(contentUri: Uri, contentName: String?) {
-        Log.d("TEST", "ONITEMCLICK URI = {$contentUri}")
         val intent = Intent(activity?.baseContext, PlayerActivity::class.java)
         intent.putExtra(PLAYER_INTENT_MEDIA_ID, contentUri.toString())
         intent.putExtra(PLAYER_INTENT_MEDIA_NAME, contentName)
@@ -104,7 +107,7 @@ class RadioListFragment : Fragment(), OnItemClickListener {
     }
 
     override fun onItemClick(id: Long) {
-        TODO("Not yet implemented")
+        return
     }
 
     override fun onItemDeleteClick(id: Long) {

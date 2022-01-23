@@ -27,6 +27,7 @@ class SongListAdapter(private val context: Context, private val clickListener: O
         val songTitle: TextView = view.findViewById(R.id.songTitle)
         val songArtist: TextView = view.findViewById(R.id.songArtist)
         val songImage: ImageView = view.findViewById(R.id.songImage)
+        val addSongToPlaylistButton: ImageView = view.findViewById(R.id.songAddToPlaylistButton)
 
         fun bind(song: Song){
             songTitle.text = song.title
@@ -66,6 +67,10 @@ class SongListAdapter(private val context: Context, private val clickListener: O
 
             holder.itemView.setOnClickListener{
                 clickListener.onItemClick(contentUri, song.title)
+            }
+
+            holder.addSongToPlaylistButton.setOnClickListener {
+                clickListener.onItemClick(song.id)
             }
         }
     }

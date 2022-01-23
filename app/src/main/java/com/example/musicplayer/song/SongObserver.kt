@@ -22,6 +22,48 @@ class SongObserver constructor(private val context: Context) {
         MediaStore.Audio.Media.DURATION
     )
 
+    fun findSongs(albumId: Long): LiveData<List<Song>>{
+        val songsLiveData = MutableLiveData<List<Song>>()
+        val songList = mutableListOf<Song>()
+
+        val selection = "${MediaStore.Audio.Albums.ALBUM_ID} == $albumId"
+
+        context.contentResolver?.query(
+            MediaStore.Audio.Media.EXTERNAL_CONTENT_URI,
+            projection,
+            selection,
+            null,
+            "${MediaStore.Video.Media.DISPLAY_NAME} ASC" // Sort in alphabetical order
+        ).use { cursor ->
+            if (cursor?.moveToFirst() == true) {
+                do {
+                    val id = cursor.getLong(cursor.getColumnIndexOrThrow(MediaStore.Audio.Media._ID))
+                    val title = cursor.getString(cursor.getColumnIndexOrThrow(MediaStore.Audio.Media.TITLE))
+                    val artist = cursor.getString(cursor.getColumnIndexOrThrow(MediaStore.Audio.Media.ARTIST))
+                    val album = cursor.getString(cursor.getColumnIndexOrThrow(MediaStore.Audio.Media.ALBUM))
+                    val albumId = cursor.getLong(cursor.getColumnIndexOrThrow(MediaStore.Audio.Media.ALBUM_ID))
+                    val duration = cursor.getString(cursor.getColumnIndexOrThrow(MediaStore.Audio.Media.DURATION))
+                    val artworkUri = Uri.parse("content://media/external/audio/albumart")
+                    val albumArtUri = ContentUris.withAppendedId(artworkUri, albumId)
+                    songList.add(
+                        Song(
+                            id = id,
+                            title = title,
+                            artist = artist,
+                            album = album,
+                            albumId = albumId,
+                            artUri = albumArtUri,
+                            duration = duration
+                        )
+                    )
+                } while (cursor.moveToNext())
+                cursor.close()
+            }
+        }
+
+        return songsLiveData.apply{ value = songList}
+    }
+
     fun findSongs(): LiveData<List<Song>> {
 
         val songsLiveData = MutableLiveData<List<Song>>()

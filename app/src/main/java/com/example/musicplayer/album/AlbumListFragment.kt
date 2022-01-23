@@ -78,14 +78,27 @@ class AlbumListFragment : Fragment(), OnItemClickListener {
     }
 
     override fun onItemClick(id: Long) {
+        return
+    }
+
+    override fun onItemClick(id: Long, uri: Uri, name: String?) {
         val intent = Intent(activity?.baseContext, AlbumActivity::class.java)
-        intent.putExtra(PLAYER_INTENT_MEDIA_ID, id)
+        intent.putExtra(EXTRA_INTENT_ALBUM_ID, id.toString())
+        intent.putExtra(EXTRA_INTENT_ALBUM_COVER, uri.toString())
+        intent.putExtra(EXTRA_INTENT_ALBUM_NAME, name)
         startActivity(intent)
     }
 
     //mby left for later idk
     override fun onItemDeleteClick(id: Long) {
         return
+    }
+
+    // Companion boject to access variables from another class (closest to static variables)
+    companion object{
+        const val EXTRA_INTENT_ALBUM_ID = "com.example.musicplayer.album.ALBUMID"
+        const val EXTRA_INTENT_ALBUM_COVER = "com.example.musicplayer.album.ALBUMCOVER"
+        const val EXTRA_INTENT_ALBUM_NAME = "com.example.musicplayer.album.ALBUMNAME"
     }
 
 }

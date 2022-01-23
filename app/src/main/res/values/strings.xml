@@ -19,4 +19,5 @@
     <string name="song_name">Song Name</string>
     <string name="no_radio_channels_found">No radio channels found</string>
     <string name="track_image">Track image</string>
+    <string name="album_cover">Album cover</string>
 </resources>

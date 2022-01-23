@@ -1,14 +1,11 @@
 package com.example.musicplayer.song
 
 import android.Manifest
-import android.content.ContentUris
 import android.content.Context
 import android.content.Intent
 import android.net.Uri
 import android.os.Bundle
-import android.provider.MediaStore
 import android.provider.Settings
-import android.util.Log
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
@@ -18,8 +15,6 @@ import android.view.ViewGroup
 import android.widget.TextView
 import android.widget.Toast
 import androidx.appcompat.app.AlertDialog
-import androidx.lifecycle.LiveData
-import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.Observer
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
@@ -32,6 +27,7 @@ import com.karumi.dexter.listener.PermissionRequest
 import com.karumi.dexter.listener.single.PermissionListener
 import androidx.recyclerview.widget.DividerItemDecoration
 import com.example.musicplayer.*
+import com.example.musicplayer.playlist.PlaylistActivity
 
 class SongListFragment : Fragment(), OnItemClickListener {
 
@@ -128,6 +124,10 @@ class SongListFragment : Fragment(), OnItemClickListener {
             })
     }
 
+    override fun onItemClick(id: Long, uri: Uri, name: String?) {
+        TODO("Not yet implemented")
+    }
+
     override fun onItemClick(contentUri: Uri, contentName: String?) {
         val intent = Intent(activity?.baseContext, PlayerActivity::class.java)
         intent.putExtra(PLAYER_INTENT_MEDIA_ID, contentUri.toString())
@@ -136,7 +136,9 @@ class SongListFragment : Fragment(), OnItemClickListener {
     }
 
     override fun onItemClick(id: Long) {
-        TODO("Not yet implemented")
+        val intent = Intent(activity?.baseContext, PlaylistActivity::class.java)
+        intent.putExtra(PLAYER_INTENT_MEDIA_ID, id.toString())
+        startActivity(intent)
     }
 
     //mby left for later idk
