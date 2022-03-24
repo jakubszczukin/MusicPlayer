@@ -8,6 +8,6 @@ data class Song(
 	var artist: String,
 	var album: String,
 	var albumId: Long,
-	var duration: String,
+	var duration: String?,
 	var artUri: Uri
 )

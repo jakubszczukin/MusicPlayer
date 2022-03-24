@@ -5,11 +5,13 @@ import android.app.AlertDialog
 import android.content.ContentValues
 import android.content.DialogInterface
 import android.content.Intent
+import android.database.Cursor
 import android.net.Uri
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.provider.MediaStore
 import android.text.InputType
+import android.util.Log
 import android.view.View
 import android.widget.Button
 import android.widget.EditText
@@ -23,8 +25,10 @@ import com.example.musicplayer.MainActivity
 import com.example.musicplayer.PLAYER_INTENT_MEDIA_ID
 import com.example.musicplayer.R
 import com.example.musicplayer.interfaces.OnItemClickListener
+import com.example.musicplayer.song.Song
 
 private lateinit var playlistsRecyclerView: RecyclerView
+private var songId: Long = 0
 
 class PlaylistActivity : AppCompatActivity(), OnItemClickListener {
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -38,7 +42,7 @@ class PlaylistActivity : AppCompatActivity(), OnItemClickListener {
             finish()
         }
 
-        val songId = intent.getStringExtra(PLAYER_INTENT_MEDIA_ID)!!.toLong()
+        songId = intent.getStringExtra(PLAYER_INTENT_MEDIA_ID)!!.toLong()
 
         playlistsRecyclerView = findViewById(R.id.playlistsRecyclerView)
         val playlistsAdapter = PlaylistAdapter(applicationContext, this)
@@ -88,11 +92,9 @@ class PlaylistActivity : AppCompatActivity(), OnItemClickListener {
 
         builder.setPositiveButton("Create", DialogInterface.OnClickListener { _, _ ->
             // Here you get get input text from the Edittext
-            val m_Text = input.text.toString()
-            if(m_Text.isNotBlank()) {
-                createPlaylist(m_Text)
-                val intent = Intent(this, MainActivity::class.java)
-                startActivity(intent)
+            val mText = input.text.toString()
+            if(mText.isNotBlank()) {
+                createPlaylist(mText)
             }
             else
                 input.error = "Name cannot be left empty!"
@@ -100,6 +102,43 @@ class PlaylistActivity : AppCompatActivity(), OnItemClickListener {
         builder.setNegativeButton("Cancel", DialogInterface.OnClickListener { dialog, which -> dialog.cancel() })
 
         builder.show()
+    }
+
+    private fun addSongToPlaylist(id: Long, songId: Long){
+        val contentValues = ContentValues(1)
+        val count = getPlaylistSize(id)
+
+        Log.d("COUNT", "count : $count")
+
+        contentValues.put(MediaStore.Audio.Playlists.Members.PLAY_ORDER, count + 1)
+        contentValues.put(MediaStore.Audio.Playlists.Members.AUDIO_ID, songId)
+
+        val uri = MediaStore.Audio.Playlists.Members.getContentUri("external", id)
+        val resolver = contentResolver
+        resolver.insert(uri, contentValues)
+        resolver.notifyChange(Uri.parse("content://media"), null)
+    }
+
+    private fun getPlaylistSize(id: Long): Int{
+        var count = 0
+        val uri = MediaStore.Audio.Playlists.Members.getContentUri("external", id)
+
+        val projection = arrayOf(MediaStore.Audio.Playlists.Members._ID)
+        val selection = MediaStore.Audio.Media.IS_MUSIC + " != 0"
+        val cursor: Cursor? = this.contentResolver.query(uri, projection, selection, null, null)
+
+        if (cursor != null) {
+            cursor.moveToFirst()
+
+            while (!cursor.isAfterLast) {
+                count++
+                cursor.moveToNext()
+            }
+
+            cursor.close()
+        }
+
+        return count
     }
 
     override fun onItemClick(id: Long, uri: Uri, name: String?) {
@@ -111,7 +150,9 @@ class PlaylistActivity : AppCompatActivity(), OnItemClickListener {
     }
 
     override fun onItemClick(id: Long) {
-        TODO("Not yet implemented")
+        addSongToPlaylist(id, songId)
+        val intent = Intent(this, MainActivity::class.java)
+        startActivity(intent)
     }
 
     override fun onItemDeleteClick(id: Long) {

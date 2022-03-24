@@ -17,6 +17,9 @@
         android:theme="@style/Theme.MusicPlayer"
         android:usesCleartextTraffic="true">
         <activity
+            android:name=".playlist.PlaylistSongsActivity"
+            android:exported="false" />
+        <activity
             android:name=".playlist.PlaylistActivity"
             android:exported="false" />
         <activity

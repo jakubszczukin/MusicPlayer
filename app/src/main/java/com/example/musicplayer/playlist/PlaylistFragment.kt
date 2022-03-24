@@ -1,7 +1,11 @@
 package com.example.musicplayer.playlist
 
+import android.content.ContentValues
+import android.content.Intent
+import android.database.Cursor
 import android.net.Uri
 import android.os.Bundle
+import android.provider.MediaStore
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
@@ -13,10 +17,12 @@ import androidx.lifecycle.Observer
 import androidx.recyclerview.widget.DividerItemDecoration
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
+import com.example.musicplayer.PLAYER_INTENT_MEDIA_ID
 import com.example.musicplayer.R
 import com.example.musicplayer.album.AlbumListAdapter
 import com.example.musicplayer.album.AlbumObserver
 import com.example.musicplayer.interfaces.OnItemClickListener
+import com.example.musicplayer.song.Song
 
 private lateinit var playlistsRecyclerView: RecyclerView
 
@@ -73,7 +79,9 @@ class PlaylistFragment : Fragment(), OnItemClickListener {
     }
 
     override fun onItemClick(id: Long) {
-        TODO("Not yet implemented")
+        val intent = Intent(activity?.baseContext, PlaylistSongsActivity::class.java)
+        intent.putExtra(PLAYER_INTENT_MEDIA_ID, id.toString())
+        startActivity(intent)
     }
 
     override fun onItemDeleteClick(id: Long) {

@@ -7,6 +7,8 @@
         <entry key="..\:/Users/Kuba Szczukin/StudioProjects/MusicPlayer/app/src/main/res/drawable/song_list_background.xml" value="0.2703125" />
         <entry key="..\:/Users/Kuba Szczukin/StudioProjects/MusicPlayer/app/src/main/res/layout/activity_main.xml" value="0.24320652173913043" />
         <entry key="..\:/Users/Kuba Szczukin/StudioProjects/MusicPlayer/app/src/main/res/layout/activity_player.xml" value="0.22192028985507245" />
+        <entry key="..\:/Users/Kuba Szczukin/StudioProjects/MusicPlayer/app/src/main/res/layout/activity_playlist.xml" value="0.13405797101449277" />
+        <entry key="..\:/Users/Kuba Szczukin/StudioProjects/MusicPlayer/app/src/main/res/layout/activity_playlist_songs.xml" value="0.20108695652173914" />
         <entry key="..\:/Users/Kuba Szczukin/StudioProjects/MusicPlayer/app/src/main/res/layout/albums_list_item.xml" value="0.1" />
         <entry key="..\:/Users/Kuba Szczukin/StudioProjects/MusicPlayer/app/src/main/res/layout/day_night_switch_layout.xml" value="0.24320652173913043" />
         <entry key="..\:/Users/Kuba Szczukin/StudioProjects/MusicPlayer/app/src/main/res/layout/exo_player_control_view.xml" value="0.22192028985507245" />
@@ -28,7 +30,6 @@
         <entry key="..\:/Users/karet/AndroidStudioProjects/MusicPlayer/app/src/main/res/layout/activity_album.xml" value="0.3754528985507246" />
         <entry key="..\:/Users/karet/AndroidStudioProjects/MusicPlayer/app/src/main/res/layout/activity_main.xml" value="0.24739583333333334" />
         <entry key="..\:/Users/karet/AndroidStudioProjects/MusicPlayer/app/src/main/res/layout/activity_player.xml" value="0.20871327254305977" />
-        <entry key="..\:/Users/karet/AndroidStudioProjects/MusicPlayer/app/src/main/res/layout/activity_playlist.xml" value="0.42916666666666664" />
         <entry key="..\:/Users/karet/AndroidStudioProjects/MusicPlayer/app/src/main/res/layout/activity_radio.xml" value="0.4076086956521739" />
         <entry key="..\:/Users/karet/AndroidStudioProjects/MusicPlayer/app/src/main/res/layout/exo_player_control_view.xml" value="0.3808876811594203" />
         <entry key="..\:/Users/karet/AndroidStudioProjects/MusicPlayer/app/src/main/res/layout/exo_player_view.xml" value="0.1" />
@@ -38,9 +39,8 @@
         <entry key="..\:/Users/karet/AndroidStudioProjects/MusicPlayer/app/src/main/res/layout/fragment_radio_list.xml" value="0.33" />
         <entry key="..\:/Users/karet/AndroidStudioProjects/MusicPlayer/app/src/main/res/layout/fragment_song_list.xml" value="0.24739583333333334" />
         <entry key="..\:/Users/karet/AndroidStudioProjects/MusicPlayer/app/src/main/res/layout/list_item.xml" value="0.33" />
-        <entry key="..\:/Users/karet/AndroidStudioProjects/MusicPlayer/app/src/main/res/layout/playlist_list_item.xml" value="0.37092391304347827" />
         <entry key="..\:/Users/karet/AndroidStudioProjects/MusicPlayer/app/src/main/res/layout/radio_list_item.xml" value="0.33" />
-        <entry key="..\:/Users/karet/AndroidStudioProjects/MusicPlayer/app/src/main/res/layout/songs_list_item.xml" value="0.33" />
+        <entry key="..\:/Users/karet/AndroidStudioProjects/MusicPlayer/app/src/main/res/layout/songs_list_item.xml" value="0.1" />
         <entry key="..\:/Users/karet/AndroidStudioProjects/MusicPlayer/app/src/main/res/menu/bottom_nav_menu.xml" value="0.24739583333333334" />
       </map>
     </option>
